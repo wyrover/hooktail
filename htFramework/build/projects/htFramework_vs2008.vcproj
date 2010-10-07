@@ -18,9 +18,10 @@
     <Configurations>
         <Configuration
             Name="Debug|Win32"
-            OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-            IntermediateDirectory="$(ConfigurationName)"
+            OutputDirectory="$(SolutionDir)output\$(ConfigurationName)"
+            IntermediateDirectory="$(SolutionDir)output\$(ConfigurationName)"
             ConfigurationType="4"
+            InheritedPropertySheets="$(SolutionDir)build\propertySheets\htFramework.vsprops"
             CharacterSet="1"
             >
             <Tool
@@ -41,7 +42,7 @@
             <Tool
                 Name="VCCLCompilerTool"
                 Optimization="0"
-                PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+                PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HTFRAMEWORK_EXPORTS"
                 MinimalRebuild="true"
                 BasicRuntimeChecks="3"
                 RuntimeLibrary="3"
@@ -79,9 +80,10 @@
         </Configuration>
         <Configuration
             Name="Release|Win32"
-            OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-            IntermediateDirectory="$(ConfigurationName)"
+            OutputDirectory="$(SolutionDir)output\$(ConfigurationName)"
+            IntermediateDirectory="$(SolutionDir)output\$(ConfigurationName)"
             ConfigurationType="4"
+            InheritedPropertySheets="$(SolutionDir)build\propertySheets\htFramework.vsprops"
             CharacterSet="1"
             WholeProgramOptimization="1"
             >
@@ -104,7 +106,7 @@
                 Name="VCCLCompilerTool"
                 Optimization="2"
                 EnableIntrinsicFunctions="true"
-                PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+                PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HTFRAMEWORK_EXPORTS"
                 RuntimeLibrary="2"
                 EnableFunctionLevelLinking="true"
                 UsePrecompiledHeader="0"
@@ -146,10 +148,70 @@
         <Filter
             Name="Core"
             >
+            <File
+                RelativePath="..\..\src\htDefine.h"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htFramework.h"
+                >
+            </File>
         </Filter>
         <Filter
             Name="Utility"
             >
+            <File
+                RelativePath="..\..\src\htFileLogger.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htFileLogger.h"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htLogger.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htLogger.h"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htTimer.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htTimer.h"
+                >
+            </File>
+        </Filter>
+        <Filter
+            Name="App"
+            >
+            <File
+                RelativePath="..\..\src\htApp.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htApp.h"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htAppD3D.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htAppD3D.h"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htAppWindows.cpp"
+                >
+            </File>
+            <File
+                RelativePath="..\..\src\htAppWindows.h"
+                >
+            </File>
         </Filter>
     </Files>
     <Globals>
