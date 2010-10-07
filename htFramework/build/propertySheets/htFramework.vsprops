@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <VisualStudioPropertySheet 
-	ProjectType="Visual C++" 
-	Version="8.00" 
-	Name="htFramework"
-	>
+    ProjectType="Visual C++" 
+    Version="8.00" 
+    Name="htFramework"
+    >
   <UserMacro
-		Name="HT_INC_DIRS"
-		Value="$(SolutionDir)src; $(SolutionDir)src\htApps\; $(SolutionDir)src\htUtil\; $(SolutionDir)src\htCommon\;"
-		PerformEnvironmentSet="true"
-	/>
+    Name="HT_INC_DIRS"
+    Value="$(SolutionDir)src; $(SolutionDir)src\htApps\; $(SolutionDir)src\htUtil\; $(SolutionDir)src\htCommon\;"
+    PerformEnvironmentSet="true"
+    />
   <UserMacro
     Name="HT_LIB_DIRS"
     Value="$(SolutionDir)output\$(ConfigurationName)"
