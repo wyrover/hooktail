@@ -1,0 +1,9 @@
+# output files
+*.obj
+proj/htFramework/output/*
+# visual studio files
+*.user  
+*.ncb
+*.suo
+*.idb
+*.pdb

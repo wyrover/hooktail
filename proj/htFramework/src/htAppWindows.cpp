@@ -17,7 +17,7 @@ htAppWindows::htAppWindows()
     //s_pApp = this;
     if( !GetConsoleHandle() )
     {
-        DbgLog("Failed to get console window handle");
+        HT_LOG("Failed to get console window handle");
     }
     else
     {
@@ -48,13 +48,13 @@ htAppWindows::GetConsoleHandle()
 
     if( !GetConsoleTitle(origWindowTitle, MAX_PATH) )
     {
-        DbgLog("Could not get console title");
+        HT_LOG("Could not get console title");
         return HT_FAIL;
     }
 
     if( !SetConsoleTitle(uniqueWindowTitle) )
     {
-        DbgLog("Could not set unique console title");
+        HT_LOG("Could not set unique console title");
         return HT_FAIL;
     }
     
@@ -64,13 +64,13 @@ htAppWindows::GetConsoleHandle()
 
     if (NULL == consoleHwnd)
     {
-        DbgLog("Could not get HWND to console window");
+        HT_LOG("Could not get HWND to console window");
         return HT_FAIL;
     }
 
     if( !SetConsoleTitle(origWindowTitle) )
     {
-        DbgLog("Could not set original console title back");
+        HT_LOG("Could not set original console title back");
         return HT_FAIL;
     }
 
@@ -83,7 +83,7 @@ htAppWindows::GetConsoleHandle()
 /*
     if (NULL == m_hInstance)
     {
-        DbgLog("Could not get HINSTANCE to console window");
+        HT_LOG("Could not get HINSTANCE to console window");
         return HT_FAIL;
     }
  */

@@ -65,6 +65,12 @@ htLogger:: LogVA(HT_LOG_LEVEL in_level, const CHAR* in_text, va_list in_vaList)
 VOID
 htLogger::LogText(const CHAR* in_text)
 {
+//     static CHAR s_pBuf[s_bufSize];
+//     std::string str;
+// 
+//     str = m_tabStr;
+//     str += in_text';
+
     switch(m_logOutput)
     {
     case HT_LOG_OUTPUT_FILE:

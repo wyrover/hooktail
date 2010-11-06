@@ -4,6 +4,8 @@
 
 #include <windows.h>
 
+#define HTLOGGER_TAB_SIZE       1024
+
 class htLogger
 {
 public:
@@ -14,6 +16,7 @@ public:
         HT_LOG_LEVEL_CRITICAL,
         HT_LOG_LEVEL_ERROR,
         HT_LOG_LEVEL_WARNING,
+        HT_LOG_LEVEL_NOTICE,
         HT_LOG_LEVEL_INFO,
         HT_LOG_LEVEL_TRACE,
         ///
@@ -30,7 +33,7 @@ public:
         HT_NUM_LOG_OUTPUTS
     } HT_LOG_OUTPUT;
 
-                                htLogger() {}
+                                htLogger() : m_tabSize(0) { m_tabStr[0] = '\0'; }
     virtual                     ~htLogger() {}
 
     VOID                        LogVA(HT_LOG_LEVEL in_level, const CHAR*, va_list in_vaList);
@@ -41,10 +44,15 @@ public:
     VOID                        SetDbgLevel(HT_LOG_LEVEL in_level) { m_logLevel = in_level; }
     VOID                        SetLogOuput(HT_LOG_OUTPUT in_output) { m_logOutput = in_output; }
 
-    const HT_LOG_LEVEL&         GetDbgLevel() { return m_logLevel; }
-    const HT_LOG_OUTPUT&        GetLogOutput() { return m_logOutput; }
+    const HT_LOG_LEVEL&         GetDbgLevel() const { return m_logLevel; }
+    const HT_LOG_OUTPUT&        GetLogOutput() const { return m_logOutput; }
 
     static const CHAR*          GetLogLevelName(HT_LOG_LEVEL in_level);
+
+    VOID                        IncTab() { ++m_tabSize; ++m_tabSize; memset(m_tabStr, ' ', m_tabSize); m_tabStr[m_tabSize] = '\0'; }
+    VOID                        DecTab() { --m_tabSize; --m_tabSize; memset(m_tabStr, ' ', m_tabSize); m_tabStr[m_tabSize] = '\0'; }
+
+    const CHAR*                 GetTab() const { return m_tabStr; }
 
 private:
 
@@ -55,6 +63,9 @@ private:
 
     HT_LOG_LEVEL                m_logLevel;
     HT_LOG_OUTPUT               m_logOutput;
+
+    UINT                        m_tabSize;
+    char                        m_tabStr[HTLOGGER_TAB_SIZE];
 
     htFileLogger                m_fileLogger;
 

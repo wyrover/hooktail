@@ -1,0 +1,47 @@
+htFramework
+===========
+
+functionality
+
+    -handle support stuff like logging, timing
+    -allow to create a windowed app or console
+    -handle D3D9, D3D10, D3D11, OGL, CUDA, etc
+    -Of those, DX10 is most important (and CUDA)
+    -creation of statically-linked libs into output folder
+    -proper copy of necessary output libs in hooktail/libs folder
+    -
+
+folder hiearchy
+
+    hooktail
+        bin
+        common
+        lib
+        proj
+            hooktail_vs2008.sln
+            htCommon
+                build
+                    propertysheets
+                        htCommon.proj
+            htFramework
+                src
+                build
+                    project
+                        htFramework.vcproj
+                output
+            
+
+main functions
+
+    InitApp()
+    InitAPI()
+    InitFramework()
+
+structure:
+
+    -Core
+        -
+    -Utility
+    -App
+
+    

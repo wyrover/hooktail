@@ -1,8 +1,22 @@
 #pragma once 
 
+
+// internal macros
+#define _HT_LOG(fw, x)                          (fw).GetLogger().Log((x));
+
+// internal debug macros
+#if _DEBUG
+#define _HT_DBG_TRACE_IN(fw)                    (fw).GetLogger().Log("HT_TRACE %s>> In  %s()\n", (fw).GetLogger().GetTab(), __FUNCTION__); (fw).GetLogger().IncTab()
+#define _HT_DBG_TRACE_OUT(fw)                   (fw).GetLogger().Log("HT_TRACE %s<< Out %s()\n", (fw).GetLogger().GetTab(), __FUNCTION__); (fw).GetLogger().DecTab()
+#define _HT_DBG_TRACE(fw, var)                  (fw).GetLogger().Log("HT_TRACE %s:  %s\n", (fw).GetLogger().GetTab(), TOSTRING(var)) // TODO @amh Add variable arg printing
+#define _HT_DBG_LOG(fw, level, __VA_ARGS__)     (fw).GetLogger().Log(level, ...)
+#endif // _DEBUG 
+
+// includes, framework
+#include "htCommon.h"
 #include "htTimer.h"
 #include "htLogger.h"
-#include "htDefine.h"
+
 
 class htFramework
 {
@@ -14,8 +28,8 @@ public:
     VOID                        SetDbgLevel(htLogger::HT_LOG_LEVEL in_level) { m_log.SetDbgLevel(in_level); }
     VOID                        SetLogOuput(htLogger::HT_LOG_OUTPUT in_output) { m_log.SetLogOuput(in_output); }
 
-    const htLogger::HT_LOG_LEVEL&   GetDbgLevel() { return m_log.GetDbgLevel(); }
-    const htLogger::HT_LOG_OUTPUT&  GetLogOutput() { return m_log.GetLogOutput(); }
+    const htLogger::HT_LOG_LEVEL    GetDbgLevel() const { return m_log.GetDbgLevel(); }
+    const htLogger::HT_LOG_OUTPUT   GetLogOutput() const { return m_log.GetLogOutput(); }
 
     VOID                        TimerStart() { m_timer.Start(); }
     VOID                        TimerStop() { m_timer.Stop(); }
@@ -27,8 +41,8 @@ public:
 
     const double                GetElapsedTime() const { m_timer.GetElapsedTime(); }
 
-    const htLogger&             GetLogger() { return m_log; }
-    const htTimer&              GetTimer() { return m_timer; }
+    htLogger                    GetLogger() { return m_log; }
+    htTimer                     GetTimer() { return m_timer; }
 
 private:
 
@@ -54,7 +68,7 @@ htFramework::htFramework()
     m_log.SetLogOuput(htLogger::HT_LOG_OUTPUT_NONE);
 #endif
 }
-
+/*
 inline VOID
 htFramework::Log(const CHAR* in_msg, ...)
 {
@@ -85,4 +99,4 @@ htFramework::DbgLog(htLogger::HT_LOG_LEVEL in_level, const CHAR* in_msg, ...)
     va_end(vl);
 #endif
 }
-
+*/
