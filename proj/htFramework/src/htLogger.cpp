@@ -1,6 +1,8 @@
 #include "htLogger.h"
 #include "htDefine.h"
 
+using namespace hooktail;
+
 // Init const data
 const UINT htLogger::s_bufSize = 1024;
 

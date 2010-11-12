@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <fstream>
+#include <windows.h>
+
+namespace hooktail
+{
 
 class htFileLogger
 {
@@ -19,3 +23,4 @@ private:
     std::fstream            m_file;
 
 };
+} // namespace hooktail

@@ -1,6 +1,7 @@
 #include "htAppWindows.h"
 #include <windows.h>
 
+using namespace hooktail;
 
 htAppWindows::htAppWindows()
     : htApp()
@@ -112,7 +113,7 @@ htAppWindows::InitWindow()
     // Register the class
 	if( !RegisterClassEx(&wcx) )
 	{
-        Log("RegisterClassEx failed");
+        HT_LOG("RegisterClassEx failed");
         return 1;
 	}
 
@@ -137,7 +138,7 @@ htAppWindows::InitWindow()
 
     if( NULL == m_hMainWnd )
 	{
-        Log("CreateWindow failed.");
+        HT_LOG("CreateWindow failed.");
         return 1;
 	}
 
@@ -157,7 +158,7 @@ htAppWindows::Run()
     {
         if( -1 == bRet )
         {
-            Log("GetMessage Failed");
+            HT_LOG("GetMessage Failed");
             return FALSE;
         }
         else

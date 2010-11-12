@@ -3,6 +3,9 @@
 #include "htApp.h"
 #include <windows.h>
 
+namespace hooktail
+{
+
 class htAppWindows : public htApp
 {
 public:
@@ -40,8 +43,6 @@ private:
     HWND                        m_hMainWnd;
 
     std::wstring                m_wndClassName;
-
-    //static htAppWindows*        s_pApp;
 };
 
 
@@ -69,3 +70,5 @@ htAppWindowsFactory::DestroyApp(htAppWindows* in_pApp)
 {
     SAFE_DELETE(in_pApp);
 }
+
+} // namespace hooktail

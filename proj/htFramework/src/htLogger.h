@@ -1,10 +1,14 @@
 #pragma once
 
+#include "htTimer.h"
 #include "htFileLogger.h"
 
 #include <windows.h>
 
 #define HTLOGGER_TAB_SIZE       1024
+
+namespace hooktail
+{
 
 class htLogger
 {
@@ -33,7 +37,7 @@ public:
         HT_NUM_LOG_OUTPUTS
     } HT_LOG_OUTPUT;
 
-                                htLogger() : m_tabSize(0) { m_tabStr[0] = '\0'; }
+                                htLogger();
     virtual                     ~htLogger() {}
 
     VOID                        LogVA(HT_LOG_LEVEL in_level, const CHAR*, va_list in_vaList);
@@ -42,9 +46,8 @@ public:
     VOID                        Log(const CHAR*, ...);
 
     VOID                        SetDbgLevel(HT_LOG_LEVEL in_level) { m_logLevel = in_level; }
-    VOID                        SetLogOuput(HT_LOG_OUTPUT in_output) { m_logOutput = in_output; }
-
     const HT_LOG_LEVEL&         GetDbgLevel() const { return m_logLevel; }
+    VOID                        SetLogOuput(HT_LOG_OUTPUT in_output) { m_logOutput = in_output; }
     const HT_LOG_OUTPUT&        GetLogOutput() const { return m_logOutput; }
 
     static const CHAR*          GetLogLevelName(HT_LOG_LEVEL in_level);
@@ -68,20 +71,32 @@ private:
     char                        m_tabStr[HTLOGGER_TAB_SIZE];
 
     htFileLogger                m_fileLogger;
+    htTimer                     m_timer;
 
     static const UINT           s_bufSize;
 };
+
+inline
+htLogger::htLogger()
+: m_logLevel(HT_LOG_LEVEL_NONE)
+, m_logOutput(HT_LOG_OUTPUT_NONE)
+, m_tabSize(0)
+{
+    m_tabStr[0] = '\0';
+    m_timer.Start();
+}
 
 
 inline VOID
 htLogger::LogConsole(const CHAR* in_text)
 {
-    printf("LOG %s\n", in_text);
+    printf("LOG[%12llu] %s", m_timer.GetElapsedTimeNanoseconds(), in_text);
 }
 
 inline VOID
 htLogger::LogFile(const CHAR* in_text)
 {
-    printf("LOG FILE %s\n", in_text);
+    printf("LOG FILE %s", in_text);
     //m_fileLogger.Log(in_text);
 }
+} // namespace hooktail

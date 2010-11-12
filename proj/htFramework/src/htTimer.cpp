@@ -1,5 +1,7 @@
 #include "htTimer.h"
 
+using namespace hooktail;
+
 // static initialization
 double  htTimer::s_frequency;
 double  htTimer::s_frequencyInv;
