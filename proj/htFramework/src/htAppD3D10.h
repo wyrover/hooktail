@@ -6,22 +6,22 @@
 #include <string>
 
 
-// namespace ht {
+namespace hooktail {
 
-class htAppD3D : public htAppWindows
+class htAppD3D10 : public htAppWindows
 {
 public:
-
-                                htAppD3D();
+                                htAppD3D10();
 
     virtual LRESULT             MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam);
 
 protected:
 
-    VOID                        InitAPI();
+    HRESULT                     InitAPI();
 
 
 private:
+
 
     std::wstring                m_frameStats;
 
@@ -35,10 +35,12 @@ private:
     D3D10_DRIVER_TYPE           m_d3dDriverType;
 
     D3DXCOLOR                   m_clearColor;
+
+    BOOL                        m_isWindowed;
 };
 
 inline
-htAppD3D::htAppD3D()
+htAppD3D10::htAppD3D10()
     : htAppWindows()
     , m_frameStats(L"")
     , m_pD3dDevice(0)
@@ -49,5 +51,8 @@ htAppD3D::htAppD3D()
     , m_pFont(0)
     , m_d3dDriverType(D3D10_DRIVER_TYPE_HARDWARE)
     , m_clearColor(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f))
+    , m_isWindowed(true)
 {
 }
+
+} // namespace hooktail

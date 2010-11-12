@@ -7,6 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PropertySheets", "PropertyS
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "htFramework", "proj\htFramework\build\htFramework_vs2008.vcproj", "{9260B296-1A14-4F12-A972-646EC2972078}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "htTestApp", "proj\htTestApp\build\htTestApp.vcproj", "{644DE8F6-B723-46EF-BA38-148D8E478C71}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9260B296-1A14-4F12-A972-646EC2972078} = {9260B296-1A14-4F12-A972-646EC2972078}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -17,6 +22,10 @@ Global
 		{9260B296-1A14-4F12-A972-646EC2972078}.Debug|Win32.Build.0 = Debug|Win32
 		{9260B296-1A14-4F12-A972-646EC2972078}.Release|Win32.ActiveCfg = Release|Win32
 		{9260B296-1A14-4F12-A972-646EC2972078}.Release|Win32.Build.0 = Release|Win32
+		{644DE8F6-B723-46EF-BA38-148D8E478C71}.Debug|Win32.ActiveCfg = Debug|Win32
+		{644DE8F6-B723-46EF-BA38-148D8E478C71}.Debug|Win32.Build.0 = Debug|Win32
+		{644DE8F6-B723-46EF-BA38-148D8E478C71}.Release|Win32.ActiveCfg = Release|Win32
+		{644DE8F6-B723-46EF-BA38-148D8E478C71}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

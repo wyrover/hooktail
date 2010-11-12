@@ -1,5 +1,10 @@
+#pragma once
+
 #include <windows.h>
 
+
+namespace hooktail
+{
 class htTimer
 {
 public:
@@ -11,6 +16,7 @@ public:
     VOID                        Reset();
 
     const double                GetElapsedTime() const;
+    const UINT64                GetElapsedTimeNanoseconds() const;
 
 private:
     LARGE_INTEGER               m_startTime;
@@ -78,3 +84,12 @@ htTimer::GetElapsedTime() const
 
     return retVal;
 }
+
+inline const UINT64
+htTimer::GetElapsedTimeNanoseconds() const
+{
+    return static_cast<UINT>(GetElapsedTime() * 1000000);
+}
+
+
+} // namespace hooktail

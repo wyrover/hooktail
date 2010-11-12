@@ -1,33 +1,57 @@
-<?xml version="1.0"?>
-<VisualStudioPropertySheet 
-    ProjectType="Visual C++" 
-    Version="8.00" 
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+    ProjectType="Visual C++"
+    Version="8.00"
     Name="htCommon"
     >
-  <UserMacro
-    Name="HT_PATH"
-    Value="$(SolutionDir)"
-    PerformEnvironmentSet="true"
+    <UserMacro
+        Name="HT_PATH"
+        Value="$(SolutionDir)"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_BIN_PATH"
+        Value="$(HT_PATH)bin\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_COMMON_PATH"
+        Value="$(HT_PATH)common\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_PROJ_PATH"
+        Value="$(HT_PATH)proj\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_VCPROJ_PATH"
+        Value="$(ProjectDir)..\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_FRAMEWORK_PATH"
+        Value="$(HT_PROJ_PATH)htFramework\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_FRAMEWORK_SRC_PATH"
+        Value="$(HT_FRAMEWORK_PATH)src"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_FRAMEWORK_INC_PATH"
+        Value="$(HT_FRAMEWORK_PATH)src"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_FRAMEWORK_BIN_PATH"
+        Value="$(HT_FRAMEWORK_PATH)output\bin\"
+        PerformEnvironmentSet="true"
     />
   <UserMacro
-    Name="HT_BIN_PATH"
-    Value="$(HT_PATH)bin\"
-    PerformEnvironmentSet="true"
+      Name="HT_FRAMEWORK_LIB_PATH"
+      Value="$(HT_FRAMEWORK_PATH)output\bin\"
+      PerformEnvironmentSet="true"
     />
-  <UserMacro
-    Name="HT_COMMON_PATH"
-    Value="$(HT_PATH)common\"
-    PerformEnvironmentSet="true"
-    />
-  <UserMacro
-    Name="HT_PROJ_PATH"
-    Value="$(HT_PATH)proj\"
-    PerformEnvironmentSet="true"
-    />
-  <UserMacro
-    Name="HT_VCPROJ_PATH"
-    Value="$(ProjectDir)..\"
-    PerformEnvironmentSet="true"
-    />
-    
 </VisualStudioPropertySheet>
