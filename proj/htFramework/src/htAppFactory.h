@@ -13,11 +13,13 @@
 class htAppFactory
 {
 public:
-                                htAppFactory() {}
-    virtual                     ~htAppFactory() {}
 
     virtual htApp*              CreateApp() = 0;
     virtual void                DestroyApp(htApp* in_pApp);
+
+private:
+    htAppFactory() {}
+    virtual                     ~htAppFactory() {}
 };
 
 inline void

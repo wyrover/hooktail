@@ -2,9 +2,10 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="htTestApp"
-	ProjectGUID="{644DE8F6-B723-46EF-BA38-148D8E478C71}"
-	RootNamespace="htTestApp"
+	Name="htGfxD10"
+	ProjectGUID="{259C353C-E325-4F6F-9332-72107098F8F3}"
+	RootNamespace="htGfxD10"
+	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -19,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(HT_VCPROJ_PATH)output\bin\$(ConfigurationName)"
 			IntermediateDirectory="$(HT_VCPROJ_PATH)output\obj\$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="4"
 			InheritedPropertySheets="..\..\..\common\propertysheets\htCommon.vsprops"
 			CharacterSet="1"
 			>
@@ -41,10 +42,12 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH); $(HT_GFXD10_INC_PATH)"
+				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH)"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -58,16 +61,12 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="htFramework.lib htGfxD10.lib"
-				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;;&quot;$(HT_GFXD10_LIB_PATH)$(ConfigurationName)&quot;"
-				GenerateDebugInformation="true"
+				Name="VCLibrarianTool"
+				AdditionalDependencies="htFramework.lib d3d10.lib"
+				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -79,19 +78,18 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="echo copying $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(HT_VCPROJ_PATH)output\bin\$(ConfigurationName)"
 			IntermediateDirectory="$(HT_VCPROJ_PATH)output\obj\$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="4"
 			InheritedPropertySheets="..\..\..\common\propertysheets\htCommon.vsprops"
 			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -112,9 +110,11 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH); $(HT_GFXD10_INC_PATH)"
+				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH)"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -128,15 +128,12 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="htFramework.lib htGfxD10.lib"
-				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;;&quot;$(HT_GFXD10_LIB_PATH)$(ConfigurationName)&quot;"
+				Name="VCLibrarianTool"
+				AdditionalDependencies="htFramework.lib d3d10.lib"
+				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -148,10 +145,8 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="echo copying $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -164,7 +159,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\src\main.cpp"
+				RelativePath="..\src\htAppD3D10.cpp"
 				>
 			</File>
 		</Filter>
@@ -174,10 +169,14 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\src\htTestApp.h"
+				RelativePath="..\src\htAppD3D10.h"
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\ReadMe.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

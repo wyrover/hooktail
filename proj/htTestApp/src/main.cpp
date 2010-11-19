@@ -1,5 +1,6 @@
 
 #include "htFramework.h"
+#include "htLogger.h"
 #include "htTestApp.h"
 
 #include <stdio.h>

@@ -15,7 +15,6 @@ htAppWindows::htAppWindows()
     , m_clientHeight(HT_DEFAULT_APP_WINDOW_HEIGHT)
     , m_wndClassName(L"htAppWindowsClass")
 {
-    //s_pApp = this;
     if( !GetConsoleHandle() )
     {
         HT_LOG("Failed to get console window handle");

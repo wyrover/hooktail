@@ -10,32 +10,33 @@
 namespace hooktail
 {
 
+typedef enum _HT_LOG_LEVEL
+{
+    HT_LOG_LEVEL_NONE = 0,
+    HT_LOG_LEVEL_CRITICAL,
+    HT_LOG_LEVEL_ERROR,
+    HT_LOG_LEVEL_WARNING,
+    HT_LOG_LEVEL_NOTICE,
+    HT_LOG_LEVEL_INFO,
+    HT_LOG_LEVEL_TRACE,
+    ///
+    HT_NUM_LOG_LEVELS
+} HT_LOG_LEVEL;
+
+typedef enum _HT_LOG_OUTPUT
+{
+    HT_LOG_OUTPUT_FILE = 0,
+    HT_LOG_OUTPUT_CONSOLE,
+    HT_LOG_OUTPUT_ALL,
+    HT_LOG_OUTPUT_NONE,
+    ///
+    HT_NUM_LOG_OUTPUTS
+} HT_LOG_OUTPUT;
+
 class htLogger
 {
 public:
 
-    typedef enum _HT_LOG_LEVEL
-    {
-        HT_LOG_LEVEL_NONE = 0,
-        HT_LOG_LEVEL_CRITICAL,
-        HT_LOG_LEVEL_ERROR,
-        HT_LOG_LEVEL_WARNING,
-        HT_LOG_LEVEL_NOTICE,
-        HT_LOG_LEVEL_INFO,
-        HT_LOG_LEVEL_TRACE,
-        ///
-        HT_NUM_LOG_LEVELS
-    } HT_LOG_LEVEL;
-
-    typedef enum _HT_LOG_OUTPUT
-    {
-        HT_LOG_OUTPUT_FILE = 0,
-        HT_LOG_OUTPUT_CONSOLE,
-        HT_LOG_OUTPUT_ALL,
-        HT_LOG_OUTPUT_NONE,
-        ///
-        HT_NUM_LOG_OUTPUTS
-    } HT_LOG_OUTPUT;
 
                                 htLogger();
     virtual                     ~htLogger() {}
