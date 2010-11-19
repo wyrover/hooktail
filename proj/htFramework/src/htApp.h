@@ -32,7 +32,7 @@ protected:
 
     VOID                        SetAppTitle(const std::wstring in_title);
     VOID                        SetAppDesc(const std::wstring in_desc);
-    VOID                        SetDbgLevel(htLogger::HT_LOG_LEVEL in_level) { m_fw.SetDbgLevel(in_level); }
+    VOID                        SetDbgLevel(HT_LOG_LEVEL in_level) { m_fw.SetDbgLevel(in_level); }
 
     std::wstring                m_appTitle;                 /// Application title
     std::wstring                m_appDesc;                  /// Application description
@@ -57,11 +57,15 @@ htApp::htApp()
 inline VOID
 htApp::InitFramework()
 {
+    HT_TRACE_IN();
+
 #if _DEBUG
-    m_fw.SetDbgLevel(htLogger::HT_LOG_LEVEL_TRACE);
+    m_fw.SetDbgLevel(HT_LOG_LEVEL_TRACE);
 #else
-    m_fw.SetDbgLevel(htLogger::HT_LOG_LEVEL_NONE);
+    m_fw.SetDbgLevel(HT_LOG_LEVEL_NONE);
 #endif
+
+    HT_TRACE_OUT();
 }
 
 inline VOID
@@ -79,15 +83,21 @@ htApp::InitApp()
 inline VOID
 htApp::SetAppTitle(const std::wstring in_title)
 {
-    //DbgLog(htLogger::HT_LOG_LEVEL_TRACE, __FUNCTION__);
+    HT_TRACE_IN();
+
     m_appTitle = in_title;
+
+    HT_TRACE_OUT();
 }
 
 inline VOID
 htApp::SetAppDesc(const std::wstring in_desc)
 {
-    //DbgLog(htLogger::HT_LOG_LEVEL_TRACE, __FUNCTION__);
+    HT_TRACE_IN();
+
     m_appDesc = in_desc;
+
+    HT_TRACE_OUT();
 }
 
 inline const std::wstring&
@@ -101,39 +111,6 @@ htApp::GetAppDesc()
 {
     return m_appDesc;
 }
-
-// inline VOID
-// htApp::Log(const CHAR* in_msg, ...)
-// {
-//     va_list vl;
-//     va_start(vl, in_msg);
-//     m_fw.m_log.LogVA(in_msg, vl);
-//     va_end(vl);
-// }
-// 
-// inline VOID
-// htApp::DbgLog(const CHAR* in_msg, ...)
-// {
-// #if _DEBUG
-//     va_list vl;
-//     va_start(vl, in_msg);
-//     m_fw.m_log.LogVA(in_msg, vl);
-//     va_end(vl);
-// #endif
-// }
-// 
-// inline VOID
-// htApp::DbgLog(htLogger::HT_LOG_LEVEL in_level, const CHAR* in_msg, ...)
-// {
-// #if _DEBUG
-//     va_list vl;
-//     va_start(vl, in_msg);
-//     m_fw.m_log.LogVA(in_level, in_msg, vl);
-//     va_end(vl);
-// #endif
-// }
-
-
 
 } // namespace hooktail
 

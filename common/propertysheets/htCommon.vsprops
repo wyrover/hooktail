@@ -41,7 +41,7 @@
     />
     <UserMacro
         Name="HT_FRAMEWORK_INC_PATH"
-        Value="$(HT_FRAMEWORK_PATH)src"
+        Value="$(HT_FRAMEWORK_PATH)src;"
         PerformEnvironmentSet="true"
     />
     <UserMacro
@@ -49,9 +49,29 @@
         Value="$(HT_FRAMEWORK_PATH)output\bin\"
         PerformEnvironmentSet="true"
     />
-  <UserMacro
-      Name="HT_FRAMEWORK_LIB_PATH"
-      Value="$(HT_FRAMEWORK_PATH)output\bin\"
-      PerformEnvironmentSet="true"
+    <UserMacro
+        Name="HT_FRAMEWORK_LIB_PATH"
+        Value="$(HT_FRAMEWORK_PATH)output\bin\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_GFXD10_PATH"
+        Value="$(HT_PROJ_PATH)htGfxD10\"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_GFXD10_SRC_PATH"
+        Value="$(HT_GFXD10_PATH)src"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_GFXD10_INC_PATH"
+        Value="$(HT_GFXD10_PATH)src;"
+        PerformEnvironmentSet="true"
+    />
+    <UserMacro
+        Name="HT_GFXD10_LIB_PATH"
+        Value="$(HT_GFXD10_PATH)output\bin\"
+        PerformEnvironmentSet="true"
     />
 </VisualStudioPropertySheet>

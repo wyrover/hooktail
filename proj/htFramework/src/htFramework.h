@@ -7,21 +7,20 @@
 #include "htTimer.h"
 
 // macros
-#define _HT_LOG(x)                              GetLogger().Log((x));
-#define HT_LOG(x)                               _HT_LOG(x)
+#define HT_LOG(x, ...)                          GetLogger().Log((x), __VA_ARGS__)
 #define HT_LOG_LVL(level,x,...)                 GetLogger().Log(level, (x), __VA_ARGS__)        
 
 // internal debug macros
 #if _DEBUG
-#define _HT_DBG_TRACE_IN()                      GetLogger().Log("HT_TRACE %s>> In  %s()\n", \
+#define _HT_DBG_TRACE_IN()                      GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s>> In  %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__); \
                                                 GetLogger().IncTab()
 
 #define _HT_DBG_TRACE_OUT()                     GetLogger().DecTab(); \
-                                                GetLogger().Log("HT_TRACE %s<< Out %s()\n", \
+                                                GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s<< Out %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__)
 
-#define _HT_DBG_TRACE(var)                      GetLogger().Log("HT_TRACE %s:  %s\n", \
+#define _HT_DBG_TRACE(var)                      GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s:  %s\n", \
                                                 GetLogger().GetTab(), TOSTRING(var)) // TODO @amh Add variable arg printing
 
 #define _HT_DBG_LOG(level, __VA_ARGS__)         GetLogger().Log(level, ...)
@@ -34,7 +33,6 @@
 #define HT_DBG(level, ...)                      _HT_DBG_LOG(level, __VA_ARGS__)
 #define HT_ASSERT(exp, ...)                     if(!(exp)) { _HT_LOG("HT_ASSERT!: ", ...); assert(exp); }
 #else
-#define HT_LOG_LVL(x,...)                       do {} while (0) 
 #define HT_TRACE_IN()                           do {} while (0) 
 #define HT_TRACE_OUT()                          do {} while (0) 
 #define HT_TRACE(var)                           do {} while (0) 
@@ -60,10 +58,10 @@ public:
     virtual                     ~htFramework() {}
 
     // debug logging
-    VOID                       SetDbgLevel(htLogger::HT_LOG_LEVEL in_level) { GetLogger().SetDbgLevel(in_level); }
-    VOID                       SetLogOuput(htLogger::HT_LOG_OUTPUT in_output) { GetLogger().SetLogOuput(in_output); }
-    const htLogger::HT_LOG_LEVEL    GetDbgLevel() const { return GetLogger().GetDbgLevel(); }
-    const htLogger::HT_LOG_OUTPUT   GetLogOutput() const { return GetLogger().GetLogOutput(); }
+    VOID                        SetDbgLevel(HT_LOG_LEVEL in_level) { GetLogger().SetDbgLevel(in_level); }
+    VOID                        SetLogOuput(HT_LOG_OUTPUT in_output) { GetLogger().SetLogOuput(in_output); }
+    const HT_LOG_LEVEL          GetDbgLevel() const { return GetLogger().GetDbgLevel(); }
+    const HT_LOG_OUTPUT         GetLogOutput() const { return GetLogger().GetLogOutput(); }
 
     // timer
     VOID                        TimerStart() { m_timer.Start(); }
@@ -86,11 +84,11 @@ htFramework::htFramework()
     , m_dbgLoggingEnabled(FALSE)
 {
 #if _DEBUG
-    GetLogger().SetDbgLevel(htLogger::HT_LOG_LEVEL_INFO);
-    GetLogger().SetLogOuput(htLogger::HT_LOG_OUTPUT_CONSOLE);
+    GetLogger().SetDbgLevel(HT_LOG_LEVEL_INFO);
+    GetLogger().SetLogOuput(HT_LOG_OUTPUT_CONSOLE);
 #else
-    GetLogger().SetDbgLevel(htLogger::HT_LOG_LEVEL_NONE);
-    GetLogger().SetLogOuput(htLogger::HT_LOG_OUTPUT_NONE);
+    GetLogger().SetDbgLevel(HT_LOG_LEVEL_NONE);
+    GetLogger().SetLogOuput(HT_LOG_OUTPUT_NONE);
 #endif
 }
 

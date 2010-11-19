@@ -76,6 +76,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="echo copying $(TargetFileName) ti hootkail\lib&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -139,6 +140,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="echo copying $(TargetFileName) ti hootkail\lib&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -152,10 +154,6 @@
 			>
 			<File
 				RelativePath="..\src\htApp.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htAppD3D10.cpp"
 				>
 			</File>
 			<File
@@ -201,7 +199,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\htAppD3D10.h"
+				RelativePath="..\src\htAppAPI.h"
 				>
 			</File>
 			<File
