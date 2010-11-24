@@ -1,3 +1,4 @@
+*.lib
 *.obj
 *.user  
 *.ncb
@@ -5,3 +6,5 @@
 *.idb
 *.pdb
 proj/*/output/*
+lib/*
+bin/*
