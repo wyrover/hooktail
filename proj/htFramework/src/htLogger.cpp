@@ -1,3 +1,4 @@
+#include "htCommon.h"
 #include "htLogger.h"
 #include "htDefine.h"
 
@@ -110,7 +111,7 @@ htLogger::GetLogLevelName(HT_LOG_LEVEL in_level)
     case HT_LOG_LEVEL_NONE:
         return "HT_NONE";
     default:
-        HT_ASSERT(false, "HT_LOG_LEVEL not found");
+        HT_ASSERT(!"HT_LOG_LEVEL not found");
         return "";
     }
 }

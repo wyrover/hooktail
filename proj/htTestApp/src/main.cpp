@@ -7,6 +7,7 @@
 
 using hooktail::htFramework;
 using hooktail::htTimer;
+using hooktail::htRGB;
 using hooktail::htTestApp;
 
 int main()

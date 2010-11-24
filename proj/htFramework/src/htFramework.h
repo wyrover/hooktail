@@ -1,10 +1,12 @@
 #pragma once 
 
 // includes, framework
+#include "htUtility.h"
+#include "htCommon.h"
 #include "htSingleton.h"
 #include "htLogger.h"
-#include "htCommon.h"
 #include "htTimer.h"
+#include "htRGB.h"
 
 // macros
 #define HT_LOG(x, ...)                          GetLogger().Log((x), __VA_ARGS__)
@@ -12,15 +14,15 @@
 
 // internal debug macros
 #if _DEBUG
-#define _HT_DBG_TRACE_IN()                      GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s>> In  %s()\n", \
+#define _HT_DBG_TRACE_IN()                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s>> In  %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__); \
                                                 GetLogger().IncTab()
 
 #define _HT_DBG_TRACE_OUT()                     GetLogger().DecTab(); \
-                                                GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s<< Out %s()\n", \
+                                                GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s<< Out %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__)
 
-#define _HT_DBG_TRACE(var)                      GetLogger().Log(HT_LOG_LEVEL_TRACE, "HT_TRACE %s:  %s\n", \
+#define _HT_DBG_TRACE(var)                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s:  %s\n", \
                                                 GetLogger().GetTab(), TOSTRING(var)) // TODO @amh Add variable arg printing
 
 #define _HT_DBG_LOG(level, __VA_ARGS__)         GetLogger().Log(level, ...)
@@ -31,13 +33,11 @@
 #define HT_TRACE(var)                           _HT_DBG_TRACE(var)
 // DEBUG
 #define HT_DBG(level, ...)                      _HT_DBG_LOG(level, __VA_ARGS__)
-#define HT_ASSERT(exp, ...)                     if(!(exp)) { _HT_LOG("HT_ASSERT!: ", ...); assert(exp); }
 #else
 #define HT_TRACE_IN()                           do {} while (0) 
 #define HT_TRACE_OUT()                          do {} while (0) 
 #define HT_TRACE(var)                           do {} while (0) 
 #define HT_DBG(x,...)                           do {} while (0) 
-#define HT_ASSERT(exp,...)                      do {} while (0)
 #endif // _DEBUG 
 
 

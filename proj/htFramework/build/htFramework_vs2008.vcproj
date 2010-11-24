@@ -76,7 +76,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="echo copying $(TargetFileName) ti hootkail\lib&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
+				CommandLine="echo &quot;&gt;&gt;&gt; copying $(TargetFileName) to $(HT_PATH)lib\$(ConfigurationName)\&quot;&#x0D;&#x0A;if not exist $(HT_PATH)lib\$(ConfigurationName)\ mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="echo copying $(TargetFileName) ti hootkail\lib&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
+				CommandLine="echo &quot;&gt;&gt;&gt; copying $(TargetFileName) to $(HT_PATH)lib\$(ConfigurationName)\&quot;&#x0D;&#x0A;if not exist $(HT_PATH)lib\$(ConfigurationName)\ mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -170,6 +170,10 @@
 			</File>
 			<File
 				RelativePath="..\src\htHooktail.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htImage.cpp"
 				>
 			</File>
 			<File
@@ -215,10 +219,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\htDefine.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\htFileLogger.h"
 				>
 			</File>
@@ -231,7 +231,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\htImage.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\htLogger.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htRGB.h"
 				>
 			</File>
 			<File
@@ -244,6 +252,10 @@
 			</File>
 			<File
 				RelativePath="..\src\htUtility.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htVector3.h"
 				>
 			</File>
 		</Filter>

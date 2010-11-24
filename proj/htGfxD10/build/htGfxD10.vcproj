@@ -79,7 +79,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="echo copying $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
+				CommandLine="echo &quot;&gt;&gt;&gt; copying $(TargetFileName) to $(HT_PATH)lib\$(ConfigurationName)\&quot;&#x0D;&#x0A;if not exist $(HT_PATH)lib\$(ConfigurationName)\ mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -146,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="echo copying $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(ProjectName).lib $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
+				CommandLine="echo &quot;&gt;&gt;&gt; copying $(TargetFileName) to $(HT_PATH)lib\$(ConfigurationName)\&quot;&#x0D;&#x0A;if not exist $(HT_PATH)lib\$(ConfigurationName)\ mkdir $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;copy $(OutDir)\$(TargetFileName) $(HT_PATH)lib\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
