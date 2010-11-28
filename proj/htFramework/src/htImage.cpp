@@ -11,7 +11,7 @@ using std::ostream;
 namespace hooktail
 {
 
-htImage::htImage(const htImage &in_src)
+Image::Image(const Image &in_src)
 {
     if(in_src.IsValid())
     {
@@ -24,8 +24,8 @@ htImage::htImage(const htImage &in_src)
 }
 
 
-htImage&
-htImage::operator=(const htImage &in_src)
+Image&
+Image::operator=(const Image &in_src)
 {
     if(&in_src != this)
     {
@@ -43,7 +43,7 @@ htImage::operator=(const htImage &in_src)
 
 
 void
-htImage::Init()
+Image::Init()
 {
     if( m_width > 0 && m_height > 0 )
     {
@@ -54,7 +54,7 @@ htImage::Init()
 
 
 void
-htImage::Cleanup()
+Image::Cleanup()
 {
     SAFE_DELETE(m_pPixels);
     m_width     = 0;
@@ -63,7 +63,7 @@ htImage::Cleanup()
 
 
 htPixel
-htImage::GetPixel(const int x, const int y) const
+Image::GetPixel(const int x, const int y) const
 {
     if( IsValid() &&
         x > 0 && x < m_width &&
@@ -79,7 +79,7 @@ htImage::GetPixel(const int x, const int y) const
 
 
 void
-htImage::SetPixel(const int x, const int y, const htPixel in_val)
+Image::SetPixel(const int x, const int y, const htPixel in_val)
 {
     if( IsValid() &&
         x > 0 && x < m_width &&
@@ -89,9 +89,9 @@ htImage::SetPixel(const int x, const int y, const htPixel in_val)
     }
 }
 /*
-void htImage::GammaCorrect(float in_gamma)
+void Image::GammaCorrect(float in_gamma)
 {
-    htRGB temp;
+    Color temp;
     int idx;
 
     float power = 1.0 / in_gamma;
@@ -103,13 +103,13 @@ void htImage::GammaCorrect(float in_gamma)
             idx = i*m_width + j;
 
             temp = m_pPixels[idx];
-            m_pPixels[idx] = htRGB(pow(temp.R(), power),
+            m_pPixels[idx] = Color(pow(temp.R(), power),
                                    pow(temp.G(), power),
                                    pow(temp.B(), power));
         }
     }
 }
-void htImage::WritePPM(ostream& out_str)
+void Image::WritePPM(ostream& out_str)
 {
     // output header
     out_str << "P6\n";
@@ -143,7 +143,7 @@ void htImage::WritePPM(ostream& out_str)
 }
 */
 void
-htImage::Print()
+Image::Print()
 {
     if( IsValid() )
     {
@@ -160,13 +160,13 @@ htImage::Print()
 
 
 void
-htImage::ReadImage (const char* in_file)
+Image::ReadImage (const char* in_file)
 {
     UNUSED_ARG(in_file);
 }
 
 void
-htImage::WriteImage (const char* in_file) const
+Image::WriteImage (const char* in_file) const
 {
     UNUSED_ARG(in_file);
 }

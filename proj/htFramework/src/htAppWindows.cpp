@@ -3,8 +3,8 @@
 
 using namespace hooktail;
 
-htAppWindows::htAppWindows()
-    : htApp()
+AppWindows::AppWindows()
+    : App()
     , m_hInstance(NULL)
     , m_hMainWnd(NULL)
     , m_minimized(FALSE)
@@ -27,7 +27,7 @@ htAppWindows::htAppWindows()
 
 
 int
-htAppWindows::GetConsoleHandle()
+AppWindows::GetConsoleHandle()
 {
     TCHAR   origWindowTitle[MAX_PATH];
     TCHAR   uniqueWindowTitle[MAX_PATH];
@@ -92,14 +92,14 @@ htAppWindows::GetConsoleHandle()
 }
 
 int
-htAppWindows::InitWindow()
+AppWindows::InitWindow()
 {
     // Create a Windows class description and initialize it
     WNDCLASSEX wcx = {};
 
     wcx.cbSize          = sizeof(wcx);                          /// size of structure 
     wcx.style           = CS_HREDRAW | CS_VREDRAW;              /// redraw if size changes 
-    wcx.lpfnWndProc     = htAppWindows::WindowProc;             /// points to window procedure 
+    wcx.lpfnWndProc     = AppWindows::WindowProc;             /// points to window procedure 
     wcx.cbClsExtra      = NULL;                                 /// no extra class memory 
     wcx.cbWndExtra      = NULL;                                 /// no extra window memory 
     wcx.hInstance       = m_hInstance;                          /// handle to instance 
@@ -148,7 +148,7 @@ htAppWindows::InitWindow()
 }
 
 int
-htAppWindows::Run()
+AppWindows::Run()
 {
     MSG     msg     = {0};
     BOOL    bRet    = 1;
@@ -171,7 +171,7 @@ htAppWindows::Run()
 }
 
 LRESULT
-htAppWindows::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
+AppWindows::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
 {
 
     // @AMH TODO
@@ -238,9 +238,9 @@ htAppWindows::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
 }
 
 LRESULT CALLBACK
-htAppWindows::WindowProc(HWND in_hwnd, UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
+AppWindows::WindowProc(HWND in_hwnd, UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
 {
-    static htAppWindows* pApp;
+    static AppWindows* pApp;
     //__try
     {
         switch( in_msg )
@@ -251,7 +251,7 @@ htAppWindows::WindowProc(HWND in_hwnd, UINT in_msg, WPARAM in_wParam, LPARAM in_
 
                 // Get the 'this' pointer we passed to CreateWindow via the lpParam parameter.
 			    CREATESTRUCT* cs = (CREATESTRUCT*)in_lParam;
-			    pApp = (htAppWindows*)cs->lpCreateParams;
+			    pApp = (AppWindows*)cs->lpCreateParams;
 			    return 0;
             }
         }

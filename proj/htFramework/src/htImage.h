@@ -1,22 +1,22 @@
 #pragma once
 
 #include "htCommon.h"
-#include "htRGB.h"
+#include "htColor.h"
 
 namespace hooktail
 {
 
-typedef htRGB<float> htPixel;
+typedef Color<float> htPixel;
 
-class htImage
+class Image
 {
 public:
-                                        htImage() : m_width(0), m_height(0), m_pPixels(NULL) {}
-                                        htImage(const int in_width, const int in_height);
-                                        ~htImage() { Cleanup(); }
+                                        Image() : m_width(0), m_height(0), m_pPixels(NULL) {}
+                                        Image(const int in_width, const int in_height);
+                                        ~Image() { Cleanup(); }
 
-    htImage(const htImage& src);
-    htImage&                            operator= (const htImage& in_src);
+    Image(const Image& src);
+    Image&                              operator= (const Image& in_src);
 
     htPixel                             GetPixel(const int x, const int y) const;
     void                                SetPixel(const int x, const int y, const htPixel in_val);
@@ -43,8 +43,8 @@ private:
 
 };
 
-inline
-htImage::htImage(const int in_width, const int in_height)
+HT_INLINE
+Image::Image(const int in_width, const int in_height)
     : m_width(in_width)
     , m_height(in_height)
 {

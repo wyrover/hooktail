@@ -8,3 +8,4 @@
 proj/*/output/*
 lib/*
 bin/*
+*.vcproj.*.*.user  

@@ -6,16 +6,16 @@
 
 namespace hooktail {
 
-class htApp
+class App
 {
 public:
 
-    typedef struct _htAppOptions
+    typedef struct _AppOptions
     {
-    } htAppOptions;
+    } AppOptions;
 
-                                htApp();
-    virtual                     ~htApp() {}
+                                App();
+    virtual                     ~App() {}
 
     virtual VOID                InitFramework();
 
@@ -40,12 +40,12 @@ protected:
 private:
 
     htFramework                 m_fw;
-    htAppOptions                m_appOptions;
+    AppOptions                  m_appOptions;
 
 };
 
 inline
-htApp::htApp()
+App::App()
 {
     // Framework Initialization
     InitFramework();
@@ -55,7 +55,7 @@ htApp::htApp()
 }
 
 inline VOID
-htApp::InitFramework()
+App::InitFramework()
 {
     HT_TRACE_IN();
 
@@ -69,7 +69,7 @@ htApp::InitFramework()
 }
 
 inline VOID
-htApp::InitApp()
+App::InitApp()
 {
     HT_TRACE_IN();
 
@@ -81,7 +81,7 @@ htApp::InitApp()
 
 
 inline VOID
-htApp::SetAppTitle(const std::wstring in_title)
+App::SetAppTitle(const std::wstring in_title)
 {
     HT_TRACE_IN();
 
@@ -91,7 +91,7 @@ htApp::SetAppTitle(const std::wstring in_title)
 }
 
 inline VOID
-htApp::SetAppDesc(const std::wstring in_desc)
+App::SetAppDesc(const std::wstring in_desc)
 {
     HT_TRACE_IN();
 
@@ -101,13 +101,13 @@ htApp::SetAppDesc(const std::wstring in_desc)
 }
 
 inline const std::wstring&
-htApp::GetAppTitle()
+App::GetAppTitle()
 {
     return m_appTitle;
 }
 
 inline const std::wstring&
-htApp::GetAppDesc()
+App::GetAppDesc()
 {
     return m_appDesc;
 }
