@@ -1,9 +1,11 @@
 #include "htAppD3D10.h"
 
+#include <windows.h>
+
 using namespace hooktail;
 
 HRESULT
-htAppD3D10::InitAPI()
+AppD3D10::InitAPI()
 {
     HRESULT hr = S_OK;
 
@@ -23,7 +25,7 @@ htAppD3D10::InitAPI()
 
     sd.BufferDesc.Width         = width;
     sd.BufferDesc.Height        = height;
-    sd.BufferDesc.Format        = m_rtFormat;
+    sd.BufferDesc.Format        = m_backBufferFormat;
     sd.BufferDesc.RefreshRate.Numerator = 60;
     sd.BufferDesc.RefreshRate.Denominator = 1;
     sd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -53,48 +55,107 @@ htAppD3D10::InitAPI()
             &m_pSwapChain,
             &m_pD3dDevice);
 
-
-    // Create Pixel Rendertarget View
-//     D3D10_RENDER_TARGET_VIEW_DESC   rtvd = {0};
-//     
-//     rtvd.Format     = m_rtFormat;
-//     rtvd.
+    // Create rendertarget view to bind backbuffer
+    // NOTE: Don't bother creating a view desc and instead just
+    //       used the same desc as the surface since it's typed
+        
     if(hr)
     {
-
+        hr = m_pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), reinterpret_cast<void**>(&m_pBackBuffer));
     }
 
-
-
+    if(hr)
+    {
+        hr = m_pD3dDevice->CreateRenderTargetView(m_pBackBuffer, 0, &m_pBackBufferView);
+        RELEASE(m_pBackBuffer);
+    }
 
     // Create Depth-Stencil Rendertarget View
+    if(hr)
+    {
+        D3D10_TEXTURE2D_DESC dsDesc;
+        ZeroMemory(&dsDesc, sizeof(dsDesc));
+        dsDesc.Width            = width;
+        dsDesc.Height           = height;
+        dsDesc.MipLevels        = 1;
+        dsDesc.ArraySize        = 1;
+        dsDesc.Format           = m_dsFormat;
+        dsDesc.SampleDesc.Count = m_msaaDesc.Count;
+        dsDesc.SampleDesc.Quality = m_msaaDesc.Quality;
+        dsDesc.Usage            = D3D10_USAGE_DEFAULT;
+        dsDesc.BindFlags        = D3D10_BIND_DEPTH_STENCIL;
+        dsDesc.CPUAccessFlags   = 0;
+        dsDesc.MiscFlags        = 0;
 
-    // Set Rendertargets
+        hr = m_pD3dDevice->CreateTexture2D(&dsDesc, 0, &m_pDsBuffer);
+    }
+
+    if(hr)
+    {
+        hr = m_pD3dDevice->CreateDepthStencilView(m_pDsBuffer, 0, &m_pDsView);
+    }
+
+    // Bind backbuffer and depth-stencil views to output merger stage
+    if(hr)
+    {
+       m_pD3dDevice->OMSetRenderTargets(1, &m_pBackBufferView, m_pDsView);
+    }
 
     // Setup Rasterizer State
+//     if(hr)
+//     {
+//         D3D10_RASTERIZER_DESC rastDesc;
+//         ZeroMemory(&rastDesc, sizeof(rastDesc));
+//         rastDesc.FillMode;
+//         rastDesc.CullMode;
+//         rastDesc.FrontCounterClockwise;
+//         rastDesc.DepthBias;
+//         rastDesc.DepthBiasClamp;
+//         rastDesc.SlopeScaledDepthBias;
+//         rastDesc.DepthClipEnable;
+//         rastDesc.ScissorEnable;
+//         rastDesc.MultisampleEnable;
+//         rastDesc.AntialiasedLineEnable;
+// 
+//         hr = 
+//     }
 
     // Setup Depth-Stencil State
-
+    
 
    
 
     // Create Viewport
-    D3D10_VIEWPORT vp;
-    vp.Width        = width;
-    vp.Height       = height;
-    vp.MinDepth     = 0.0f;
-    vp.MaxDepth     = 1.0f;
-    vp.TopLeftX     = 0;
-    vp.TopLeftY     = 0;
-    m_pD3dDevice->RSSetViewports(1, &vp);
+    if(hr)
+    {
+        D3D10_VIEWPORT vp;
+
+        vp.Width        = width;
+        vp.Height       = height;
+        vp.MinDepth     = 0.0f;
+        vp.MaxDepth     = 1.0f;
+        vp.TopLeftX     = 0;
+        vp.TopLeftY     = 0;
+
+        m_pD3dDevice->RSSetViewports(1, &vp);
+    }
 
     return hr;
 }
 
-LRESULT
-htAppD3D10::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
+void AppD3D10::Draw()
 {
-    htAppWindows::MsgProc(in_msg, in_wParam, in_lParam);
+    D3DXCOLOR clearColor(0.0, 0.0, 0.75, 1.0);
+    D3DXCOLOR clearDSColor(1.0, 1.0, 1.0, 1.0);
+
+    m_pD3dDevice->ClearRenderTargetView(m_pBackBufferView, clearColor);
+    m_pD3dDevice->ClearDepthStencilView(m_pDsView, clearDSColor);
+}
+
+LRESULT
+AppD3D10::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
+{
+    AppWindows::MsgProc(in_msg, in_wParam, in_lParam);
 
     switch(in_msg)
     {

@@ -10,20 +10,20 @@
 ===============================================================================
 */
 
-class htAppFactory
+class AppFactory
 {
 public:
 
-    virtual htApp*              CreateApp() = 0;
-    virtual void                DestroyApp(htApp* in_pApp);
+    virtual App*                CreateApp() = 0;
+    virtual void                DestroyApp(App* in_pApp);
 
 private:
-    htAppFactory() {}
-    virtual                     ~htAppFactory() {}
+    AppFactory() {}
+    virtual                     ~AppFactory() {}
 };
 
 inline void
-htAppFactory::DestroyApp(htApp* in_pApp)
+AppFactory::DestroyApp(App* in_pApp)
 {
     SAFE_DELETE(in_pApp);
 }

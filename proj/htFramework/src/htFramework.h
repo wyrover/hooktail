@@ -6,7 +6,8 @@
 #include "htSingleton.h"
 #include "htLogger.h"
 #include "htTimer.h"
-#include "htRGB.h"
+#include "htColor.h"
+#include "htVector3.h"
 
 // macros
 #define HT_LOG(x, ...)                          GetLogger().Log((x), __VA_ARGS__)

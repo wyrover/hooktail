@@ -215,6 +215,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\htBoundingBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htCamera.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htColor.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\htCommon.h"
 				>
 			</File>
@@ -235,11 +247,39 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\htLight.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\htLogger.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\htRGB.h"
+				RelativePath="..\src\htMaterial.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htOrthonormalBasis.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htPoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htPrimitive.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htRay.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htScene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\htShape.h"
 				>
 			</File>
 			<File

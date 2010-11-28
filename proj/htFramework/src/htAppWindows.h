@@ -6,11 +6,11 @@
 namespace hooktail
 {
 
-class htAppWindows : public htApp
+class AppWindows : public App
 {
 public:
 
-                                htAppWindows();
+                                AppWindows();
 
     HINSTANCE                   GetInstance() { return m_hInstance; }
     HWND                        GetMainWindow() { return m_hMainWnd; }
@@ -55,18 +55,18 @@ private:
 
 ===============================================================================
 */
-class htAppWindowsFactory
+class AppWindowsFactory
 {
 public:
-                                htAppWindowsFactory() {}
-    virtual                     ~htAppWindowsFactory() {}
+                                AppWindowsFactory() {}
+    virtual                     ~AppWindowsFactory() {}
 
-    virtual htAppWindows*       CreateApp() = 0;
-    virtual void                DestroyApp(htAppWindows* in_pApp);
+    virtual AppWindows*         CreateApp() = 0;
+    virtual void                DestroyApp(AppWindows* in_pApp);
 };
 
 inline void
-htAppWindowsFactory::DestroyApp(htAppWindows* in_pApp)
+AppWindowsFactory::DestroyApp(AppWindows* in_pApp)
 {
     SAFE_DELETE(in_pApp);
 }

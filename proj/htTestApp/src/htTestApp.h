@@ -5,7 +5,7 @@
 namespace hooktail
 {
 
-    class htTestApp : public htAppD3D10
+    class htTestApp : public AppD3D10
     {
 
     };

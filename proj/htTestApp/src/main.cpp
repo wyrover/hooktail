@@ -1,13 +1,7 @@
-
-#include "htFramework.h"
-#include "htLogger.h"
 #include "htTestApp.h"
 
 #include <stdio.h>
 
-using hooktail::htFramework;
-using hooktail::htTimer;
-using hooktail::htRGB;
 using hooktail::htTestApp;
 
 int main()

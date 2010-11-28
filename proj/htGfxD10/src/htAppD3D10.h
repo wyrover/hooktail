@@ -6,19 +6,20 @@
 #include <string>
 
 
-namespace hooktail {
+namespace hooktail
+{
 
-class htAppD3D10 : public htAppAPI
+class AppD3D10 : public AppAPI
 {
 public:
-                                htAppD3D10();
+                                AppD3D10();
 
     virtual LRESULT             MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam);
+    virtual void                Draw();
 
 protected:
 
     HRESULT                     InitAPI();
-
 
 private:
 
@@ -27,11 +28,17 @@ private:
 
     ID3D10Device*               m_pD3dDevice;
     IDXGISwapChain*             m_pSwapChain;
-    ID3D10Texture2D*            m_pTex2D;
-    ID3D10RenderTargetView*     m_pRTView;
-    ID3D10DepthStencilView*     m_pDSView;
+    DXGI_SAMPLE_DESC            m_msaaDesc;
+
+    ID3D10Texture2D*            m_pBackBuffer;
+    ID3D10RenderTargetView*     m_pBackBufferView;
+    DXGI_FORMAT                 m_backBufferFormat;
+    
+    ID3D10Texture2D*            m_pDsBuffer;
+    ID3D10DepthStencilView*     m_pDsView;
+    DXGI_FORMAT                 m_dsFormat;
+
     ID3DX10Font*                m_pFont;
-    DXGI_FORMAT                 m_rtFormat;
 
     D3D10_DRIVER_TYPE           m_d3dDriverType;
 
@@ -41,20 +48,24 @@ private:
 };
 
 inline
-htAppD3D10::htAppD3D10()
-    : htAppAPI()
+AppD3D10::AppD3D10()
+    : AppAPI()
     , m_frameStats(L"")
     , m_pD3dDevice(0)
     , m_pSwapChain(0)
-    , m_pTex2D(0)
-    , m_pRTView(0)
-    , m_pDSView(0)
+    , m_pBackBuffer(0)
+    , m_pBackBufferView(0)
+    , m_backBufferFormat(DXGI_FORMAT_R8G8B8A8_UNORM)
+    , m_pDsBuffer(0)
+    , m_pDsView(0)
+    , m_dsFormat(DXGI_FORMAT_D24_UNORM_S8_UINT)
     , m_pFont(0)
-    , m_rtFormat(DXGI_FORMAT_R8G8B8A8_UNORM)
     , m_d3dDriverType(D3D10_DRIVER_TYPE_HARDWARE)
     , m_clearColor(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f))
     , m_isWindowed(true)
 {
+    m_msaaDesc.Count            = 1;
+    m_msaaDesc.Quality          = 1;
 }
 
 } // namespace hooktail
