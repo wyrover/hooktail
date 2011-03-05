@@ -15,15 +15,15 @@
 
 // internal debug macros
 #if _DEBUG
-#define _HT_DBG_TRACE_IN()                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s>> In  %s()\n", \
+#define _HT_DBG_TRACE_IN()                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "%s>> In  %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__); \
                                                 GetLogger().IncTab()
 
 #define _HT_DBG_TRACE_OUT()                     GetLogger().DecTab(); \
-                                                GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s<< Out %s()\n", \
+                                                GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "%s<< Out %s()\n", \
                                                 GetLogger().GetTab(), __FUNCTION__)
 
-#define _HT_DBG_TRACE(var)                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "HT_TRACE %s:  %s\n", \
+#define _HT_DBG_TRACE(var)                      GetLogger().Log(hooktail::HT_LOG_LEVEL_TRACE, "%s:  %s\n", \
                                                 GetLogger().GetTab(), TOSTRING(var)) // TODO @amh Add variable arg printing
 
 #define _HT_DBG_LOG(level, __VA_ARGS__)         GetLogger().Log(level, ...)

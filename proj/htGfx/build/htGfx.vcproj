@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="htFramework"
-	ProjectGUID="{9260B296-1A14-4F12-A972-646EC2972078}"
-	RootNamespace="htFramework"
+	Name="htGfx"
+	ProjectGUID="{259C353C-E325-4F6F-9332-72107098F8F3}"
+	RootNamespace="htGfx"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -42,6 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,6 +62,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				AdditionalDependencies="htFramework.lib d3d10.lib"
+				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -107,6 +110,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(HT_FRAMEWORK_INC_PATH)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -125,6 +129,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				AdditionalDependencies="htFramework.lib d3d10.lib"
+				AdditionalLibraryDirectories="&quot;$(HT_FRAMEWORK_LIB_PATH)$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,155 +154,25 @@
 	</References>
 	<Files>
 		<Filter
-			Name="App"
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath="..\src\htAppD3D10.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\src\htApp.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htApp.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htAppAPI.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htAppFactory.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htAppWindows.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htAppWindows.h"
+				RelativePath="..\src\htAppD3D10.h"
 				>
 			</File>
 		</Filter>
-		<Filter
-			Name="Core"
-			>
-			<File
-				RelativePath="..\src\htCommon.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htFramework.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Utility"
-			>
-			<File
-				RelativePath="..\src\htFileLogger.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htFileLogger.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htLogger.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htLogger.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htSingleton.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htTimer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htTimer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htUtility.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htUtility.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Geometry"
-			>
-			<File
-				RelativePath="..\src\htBoundingBox.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htImage.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htOrthonormalBasis.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htPoint.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htPrimitive.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htRay.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htScene.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htShape.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htVector3.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Gfx"
-			>
-			<File
-				RelativePath="..\src\htCamera.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htColor.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htImage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htLight.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\htMaterial.h"
-				>
-			</File>
-		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>

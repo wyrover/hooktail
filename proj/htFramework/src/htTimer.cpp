@@ -17,7 +17,6 @@ htTimer::htTimer()
     if(!s_isFrequencySet)
     {
         LARGE_INTEGER temp;
-
         QueryPerformanceFrequency((LARGE_INTEGER*) &temp);
 
         s_frequency         = static_cast<double>(temp.QuadPart) / 1000.0;

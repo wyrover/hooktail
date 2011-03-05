@@ -52,20 +52,6 @@ htTimer::Reset()
     m_elapsedTime.HighPart      = 0;
 }
 
-/*
-inline VOID
-htTimer::Lap()
-{
-    LARGE_INTEGER lapTime();
-
-    if (m_running)
-    {
-        QueryPerformanceCounter((LARGE_INTEGER*) &lapTime);
-        m_elapsedTime       += lapTime;
-    }
-}
-*/
-
 inline const double
 htTimer::GetElapsedTime() const
 {
@@ -88,7 +74,7 @@ htTimer::GetElapsedTime() const
 inline const UINT64
 htTimer::GetElapsedTimeNanoseconds() const
 {
-    return static_cast<UINT>(GetElapsedTime() * 1000000);
+    return static_cast<UINT64>(GetElapsedTime() * 1000000);
 }
 
 

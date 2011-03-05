@@ -5,7 +5,7 @@ using namespace hooktail;
 
 AppWindows::AppWindows()
     : App()
-    , m_hInstance(NULL)
+    , m_hInstanceConsole(NULL)
     , m_hMainWnd(NULL)
     , m_minimized(FALSE)
     , m_maximized(FALSE)
@@ -75,9 +75,9 @@ AppWindows::GetConsoleHandle()
     }
 
 #ifdef __WIN64
-    m_hInstance = (HINSTANCE)GetWindowLongPtr(consoleHwnd, GWLP_HINSTANCE);
+    m_hInstanceConsole = (HINSTANCE)GetWindowLongPtr(consoleHwnd, GWLP_HINSTANCE);
 #else
-    m_hInstance = (HINSTANCE)GetWindowLong(consoleHwnd, GWL_HINSTANCE);
+    m_hInstanceConsole = (HINSTANCE)GetWindowLong(consoleHwnd, GWL_HINSTANCE);
 #endif
 
 /*
@@ -99,10 +99,10 @@ AppWindows::InitWindow()
 
     wcx.cbSize          = sizeof(wcx);                          /// size of structure 
     wcx.style           = CS_HREDRAW | CS_VREDRAW;              /// redraw if size changes 
-    wcx.lpfnWndProc     = AppWindows::WindowProc;             /// points to window procedure 
+    wcx.lpfnWndProc     = AppWindows::WindowProc;               /// points to window procedure 
     wcx.cbClsExtra      = NULL;                                 /// no extra class memory 
     wcx.cbWndExtra      = NULL;                                 /// no extra window memory 
-    wcx.hInstance       = m_hInstance;                          /// handle to instance 
+    wcx.hInstance       = m_hInstanceConsole;                   /// handle to instance 
     wcx.hIcon           = LoadIcon(NULL, IDI_APPLICATION);      /// predefined app. icon 
     wcx.hCursor         = LoadCursor(NULL, IDC_ARROW);          /// predefined arrow 
     wcx.hbrBackground   = (HBRUSH)GetStockObject(WHITE_BRUSH);  /// white background brush 
@@ -132,7 +132,7 @@ AppWindows::InitWindow()
         height,
         0,
         0,
-        m_hInstance,
+        m_hInstanceConsole,
         0);
 
     if( NULL == m_hMainWnd )
@@ -153,17 +153,20 @@ AppWindows::Run()
     MSG     msg     = {0};
     BOOL    bRet    = 1;
 
-    while( 0 != (bRet = GetMessage(&msg, 0, 0, 0)) )
+    while (0 != WM_QUIT)
     {
-        if( -1 == bRet )
-        {
-            HT_LOG("GetMessage Failed");
-            return FALSE;
-        }
-        else
+        if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+        }
+        else
+        {
+			if (!m_appPaused)
+            {
+                UpdateApp();
+            }
+            Render();
         }
     }
 
@@ -218,7 +221,8 @@ AppWindows::MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam)
  
 	// WM_DESTROY is sent when the window is being destroyed.
 	case WM_DESTROY:
-		PostQuitMessage(0);
+        // TODO @AMH Kill console window too
+        PostQuitMessage(0);
 		return 0;
 
 	// The WM_MENUCHAR message is sent when a menu is active and the user presses 

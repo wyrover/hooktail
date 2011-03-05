@@ -2,17 +2,13 @@
 
 #include <stdio.h>
 
-using hooktail::htTestApp;
+using hooktail::AppD3D10;
 
 int main()
 {
-    HT_TRACE_IN();
-
-    htTestApp app;
+    AppD3D10 app;
 
     app.Run();
-
-    HT_TRACE_OUT();
 
     return 0;
 }

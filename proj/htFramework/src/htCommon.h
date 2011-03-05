@@ -13,7 +13,6 @@
 
 #define UNUSED_ARG(x)           (void) (x)
 
-// Compile-time so always enabled
 #define STATIC_ASSERT(exp)      typedef char UNIQUE(__LINE__)[(exp)?1:-1];
 
 #define ARRAY_SIZE(x)           (sizeof((x)) / sizeof((x)[0]))

@@ -9,15 +9,12 @@ namespace hooktail {
 class App
 {
 public:
-
     typedef struct _AppOptions
     {
     } AppOptions;
 
                                 App();
     virtual                     ~App() {}
-
-    virtual VOID                InitFramework();
 
     const std::wstring&         GetAppTitle();
     const std::wstring&         GetAppDesc();
@@ -26,10 +23,9 @@ public:
     VOID                        TimerStop() { m_fw.TimerStop(); }
     VOID                        TimerReset() { m_fw.TimerReset(); }
 
+    virtual VOID                InitApp();
+
 protected:
-
-    VOID                        InitApp();
-
     VOID                        SetAppTitle(const std::wstring in_title);
     VOID                        SetAppDesc(const std::wstring in_desc);
     VOID                        SetDbgLevel(HT_LOG_LEVEL in_level) { m_fw.SetDbgLevel(in_level); }
@@ -38,6 +34,7 @@ protected:
     std::wstring                m_appDesc;                  /// Application description
 
 private:
+    VOID                        InitFramework();
 
     htFramework                 m_fw;
     AppOptions                  m_appOptions;
@@ -78,7 +75,6 @@ App::InitApp()
 
     HT_TRACE_OUT();
 }
-
 
 inline VOID
 App::SetAppTitle(const std::wstring in_title)

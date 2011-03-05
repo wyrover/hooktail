@@ -12,16 +12,17 @@ public:
 
                                 AppWindows();
 
-    HINSTANCE                   GetInstance() { return m_hInstance; }
+    HINSTANCE                   GetInstance() { return m_hInstanceConsole; }
     HWND                        GetMainWindow() { return m_hMainWnd; }
 
     virtual LRESULT             MsgProc(UINT in_msg, WPARAM in_wParam, LPARAM in_lParam);
     static LRESULT CALLBACK     WindowProc(HWND in_hwnd, UINT in_msg, WPARAM in_wParam, LPARAM in_lParam);
 
-
     int                         Run();
 
-    virtual VOID                OnResize() {}
+    virtual HRESULT             UpdateApp() { return S_OK; };
+    virtual VOID                Render() {};
+    virtual HRESULT             OnResize() { return S_OK; }
 
 protected:
 
@@ -39,7 +40,7 @@ private:
     int                         GetConsoleHandle();
     int                         InitWindow();
 
-    HINSTANCE                   m_hInstance;
+    HINSTANCE                   m_hInstanceConsole;
     HWND                        m_hMainWnd;
 
     std::wstring                m_wndClassName;
