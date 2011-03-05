@@ -5,6 +5,7 @@
 .*\.suo
 .*\.idb
 .*\.pdb
+.*\.cd
 proj/.*/output/.*
 lib/
 bin/
